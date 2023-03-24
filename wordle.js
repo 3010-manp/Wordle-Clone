@@ -1,5 +1,3 @@
-
-
 let guesses = 6
 let remainingGuesses = 6;
 let box = document.getElementById("board");
@@ -8,11 +6,13 @@ let columnNumber = 0;
 const buttons = document.querySelectorAll("button");
 
 const listOfWOrds = ["stamp", "catch", "about", "again", "train", 'which', "there", "their", "about",
-    "would","these","other","words","could","write","first","water","after","where","right",
-    "think","three","years","place","sound","great"];
+  "would", "these", "other", "words", "could", "write", "first", "water", "after", "where", "right",
+  "think", "three", "years", "place", "sound", "great"
+];
 
 const randomWord = listOfWOrds[Math.floor(Math.random() * 5)];
 let pressedButtons = [];
+let usedGuessBoxes = [];
 let gameIsOver = false;
 
 
@@ -37,14 +37,29 @@ buttons.forEach((button) => {
   });
 });
 
+document.addEventListener("keyup", (e) => {
+  let key = String(e.key);
+  let keyFound = key.match(/[a-z]/gi);
+  let button = document.getElementById(key.toUpperCase());
+  if (!gameIsOver) {
+    if (key.toUpperCase() === "ENTER") {
+      guessWord();
+    } else if (key.toUpperCase() === "BACKSPACE") {
+      deleteWord(button);
+    } else if (keyFound.length === 1) {
+      insertWord(key.toUpperCase(), button);
+    }
+  }
+});
+
 function insertWord(key, button) {
   pressedButtons.push(button);
   if (columnNumber >= 5) {
     return;
   }
-
   let parentRow = document.getElementById(rowNumber);
   let rowElement = parentRow.querySelectorAll(".row-element")[columnNumber];
+  usedGuessBoxes.push(rowElement);
   rowElement.classList.add("row-insert-effect");
   rowElement.innerHTML = key;
   if (columnNumber < 5) {
@@ -73,7 +88,11 @@ function guessWord() {
   if (columnNumber < 5) {
     notificationBanner("Not Enough Words", "alert-danger");
   } else {
-    checkWord();
+    let check = checkWord();
+    if (check === 1) {
+      columnNumber = 0;
+      return;
+    }
     remainingGuesses--;
     updateGuesses();
     rowNumber++;
@@ -86,7 +105,10 @@ function checkWord() {
   let parentRow = document.getElementById(rowNumber);
   const word = parentRow.querySelectorAll(".row-element");
   let correctCharacters = 0;
-
+  if (!checkWorkInList(word)) {
+    notificationBanner("Word is not in the List, Please Try Another Word", "alert-danger");
+    return 1;
+  }
   word.forEach((character, index) => {
     const characterIndex = randomWord.indexOf(character.innerText.toLowerCase());
     let char = character.innerText.toLowerCase();
@@ -168,7 +190,6 @@ function notificationBanner(text, alert) {
   notification.classList.remove("fade");
   notification.classList.remove("in");
   notification.innerText = text;
-
   setTimeout(() => {
     notification.classList.add("fade");
     notification.classList.add("in");
@@ -183,6 +204,24 @@ function updateGuesses() {
   number.innerText = remainingGuesses;
   guessText.innerText = "Remaining Guesses: ";
   guessText.append(number);
+}
+
+function checkWorkInList(word) {
+  let guessedWord = ""
+  word.forEach((character) => {
+    guessedWord += character.innerText.toLowerCase()
+  })
+  if (listOfWOrds.includes(guessedWord)) {
+    usedGuessBoxes = [];
+    return true;
+  } else {
+    pressedButtons = [];
+    usedGuessBoxes.forEach((box) => {
+      box.classList.remove("row-insert-effect");
+      box.innerHTML = " ";
+    });
+    return false;
+  }
 }
 
 generateBoard();
