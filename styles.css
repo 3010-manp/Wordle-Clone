@@ -111,8 +111,7 @@ body {
   margin-top: 2%
 }
 
-@media screen and (max-height: 880px)
-{
+@media screen and (max-height: 880px) {
   .keyboard {
     margin-top: 1%;
   }
@@ -141,8 +140,12 @@ body {
     height: 2.5rem;
     width: 2.5rem;
     margin: 1px;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     border: 2px solid black;
+  }
+
+  .row-insert-effect {
+    border: 4px solid black;
   }
 
   #guess-left {
@@ -168,5 +171,28 @@ body {
     margin: auto;
     margin-bottom: 1%;
     margin-top: 1%
+  }
+
+  .green-box-button {
+    background-color: green;
+    color: black;
+  }
+
+  .grey-box-button {
+    background-color: #5A5A5A;
+    color: black;
+  }
+
+  .yellow-box-button {
+    background-color: yellow;
+    color: black;
+  }
+
+  .border-style {
+    border: 1px solid black;
+  }
+
+  .small-screenT {
+    margin: 2.5% auto;
   }
 }
