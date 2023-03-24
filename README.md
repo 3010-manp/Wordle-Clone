@@ -2,6 +2,7 @@
 
 ## To run the game, open the url.
 ### https://3010-manp.github.io/Wordle-Clone/
+### some words that are in the list are "catch", "about", "again" etc
 
 ## To run it on local computer:
 ### Clone the repository https://github.com/3010-manp/Wordle-Clone.git
