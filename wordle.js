@@ -10,7 +10,7 @@ const listOfWOrds = ["stamp", "catch", "about", "again", "train", 'which', "ther
   "think", "three", "years", "place", "sound", "great"
 ];
 
-const randomWord = listOfWOrds[Math.floor(Math.random() * 5)];
+const randomWord = listOfWOrds[Math.floor(Math.random() * listOfWOrds.length)];
 let pressedButtons = [];
 let usedGuessBoxes = [];
 let gameIsOver = false;
