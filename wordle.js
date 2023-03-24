@@ -15,7 +15,6 @@ let pressedButtons = [];
 let usedGuessBoxes = [];
 let gameIsOver = false;
 
-
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     let key = button.value;
