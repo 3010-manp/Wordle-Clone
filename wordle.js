@@ -11,7 +11,7 @@ const listOfWOrds = ["stamp", "catch", "about", "again", "train", 'which', "ther
     "would","these","other","words","could","write","first","water","after","where","right",
     "think","three","years","place","sound","great"];
 
-const randomWord = listOfWOrds[Math.floor(Math.random() * 5)];
+const randomWord = listOfWOrds[Math.floor(Math.random() * listOfWOrds.length)];
 let pressedButtons = [];
 let gameIsOver = false;
 
