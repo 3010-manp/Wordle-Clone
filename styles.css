@@ -111,7 +111,7 @@ body {
   margin-top: 2%
 }
 
-@media screen and (max-height: 880px) {
+@media screen and (max-height:880px) {
   .keyboard {
     margin-top: 1%;
   }
@@ -196,3 +196,4 @@ body {
     margin: 2.5% auto;
   }
 }
+

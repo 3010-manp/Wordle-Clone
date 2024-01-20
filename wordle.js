@@ -1,14 +1,10 @@
+
 let guesses = 6
 let remainingGuesses = 6;
 let box = document.getElementById("board");
 let rowNumber = 0;
 let columnNumber = 0;
 const buttons = document.querySelectorAll("button");
-
-const listOfWOrds = ["stamp", "catch", "about", "again", "train", 'which', "there", "their", "about",
-  "would", "these", "other", "words", "could", "write", "first", "water", "after", "where", "right",
-  "think", "three", "years", "place", "sound", "great"
-];
 
 const randomWord = listOfWOrds[Math.floor(Math.random() * listOfWOrds.length)];
 let pressedButtons = [];
