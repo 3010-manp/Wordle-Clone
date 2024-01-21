@@ -78,7 +78,6 @@ function deleteWord(button) {
   }
 }
 
-
 function guessWord() {
   if (columnNumber < 5) {
     notificationBanner("Not Enough Words", "alert-danger");
@@ -96,7 +95,6 @@ function guessWord() {
 }
 
 function checkWord() {
-  console.log(columnNumber, rowNumber);
   let parentRow = document.getElementById(rowNumber);
   const word = parentRow.querySelectorAll(".row-element");
   let correctCharacters = 0;
@@ -104,14 +102,28 @@ function checkWord() {
     notificationBanner("Word is not in the List, Please Try Another Word", "alert-danger");
     return 1;
   }
+
+  let totalCharCount = {};
+  let charCounting = {};
+  randomWord.split('').forEach((character)=> {
+    if(totalCharCount[character])
+    {
+      totalCharCount[character]++;
+    }
+    else 
+    {
+      totalCharCount[character] = 1;
+    }
+    charCounting[character] = 0
+  });
+
   word.forEach((character, index) => {
-    const characterIndex = randomWord.indexOf(character.innerText.toLowerCase());
     let char = character.innerText.toLowerCase();
-    // console.log(characterIndex);
+    charCounting[char]++;
     if (randomWord.charAt(index) === char) {
       character.classList.add("green-box");
       correctCharacters++;
-    } else if (characterIndex != index && characterIndex >= 0) {
+    } else if (randomWord.indexOf(char) != -1 && charCounting[char] <= totalCharCount[char]) {
       character.classList.add("yellow-box");
     } else {
       character.classList.add("grey-box");
