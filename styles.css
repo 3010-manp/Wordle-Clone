@@ -241,7 +241,7 @@ body {
   }
 
   .row1, .row2, .row3 {
-    gap: 0.1%;
+    gap: 0%;
   }
 }
 
@@ -271,7 +271,7 @@ body {
   }
 
   .row1, .row2, .row3 {
-    gap: 0.1%;
+    gap: 0%;
   }
 }
 
