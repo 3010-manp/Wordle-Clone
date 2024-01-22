@@ -99,7 +99,7 @@ function checkWord() {
   const word = parentRow.querySelectorAll(".row-element");
   let correctCharacters = 0;
   if (!checkWorkInList(word)) {
-    notificationBanner("Word is not in the List, Please Try Another Word", "alert-danger");
+    notificationBanner("Please Try Another Word", "alert-danger");
     return 1;
   }
 
